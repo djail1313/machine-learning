@@ -16,14 +16,14 @@ class CreateCategoricalDatasetsTable extends Migration
         Schema::create('categorical_datasets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('system_id')->unsigned();
-            $table->integer('class_id')->unsigned()->nullable();
+            $table->integer('data_class_id')->unsigned()->nullable();
             $table->text('free')->nullable();
             $table->timestamps();
         });
 
         Schema::table('categorical_datasets', function($table){
             $table->foreign('system_id')->references('id')->on('systems')->onDelete('cascade');
-            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('data_class_id')->references('id')->on('data_classes')->onDelete('cascade');
         });
     }
 

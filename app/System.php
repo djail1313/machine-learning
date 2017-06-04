@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class System extends Model
 {
 
-    public function classes() {
-    	return $this->hasMany('App\Class');
+    public function data_classes() {
+    	return $this->hasMany('App\DataClass');
     }
 
     public function attributes() {

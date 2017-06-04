@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClassesTable extends Migration
+class CreateDataClassesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table) {
+        Schema::create('data_classes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('system_id')->unsigned();
             $table->string('name');
@@ -22,7 +22,7 @@ class CreateClassesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('classes', function($table){
+        Schema::table('data_classes', function($table){
             $table->foreign('system_id')->references('id')->on('systems')->onDelete('cascade');
         });
     }

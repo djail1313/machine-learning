@@ -11,8 +11,8 @@ class CategoricalDetailDataset extends Model
 		return $this->belongsTo('App\CategoricalDataset');
 	}
 
-	public function class() {
-		return $this->belongsTo('App\Class');
+	public function data_class() {
+		return $this->belongsTo('App\DataClass');
 	}
 
 	public function attribute() {

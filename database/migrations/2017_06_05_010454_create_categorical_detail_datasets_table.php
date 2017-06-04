@@ -16,7 +16,7 @@ class CreateCategoricalDetailDatasetsTable extends Migration
         Schema::create('categorical_detail_datasets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('categorical_dataset_id')->unsigned();
-            $table->integer('class_id')->unsigned()->nullable();
+            $table->integer('data_class_id')->unsigned()->nullable();
             $table->integer('attribute_id')->unsigned();
             $table->text('free')->nullable();
             $table->timestamps();
@@ -25,7 +25,7 @@ class CreateCategoricalDetailDatasetsTable extends Migration
         Schema::table('categorical_detail_datasets', function($table){
             $table->foreign('categorical_dataset_id')->references('id')->on('categorical_datasets')->onDelete('cascade');
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
-            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('data_class_id')->references('id')->on('data_classes')->onDelete('cascade');
         });
     }
 

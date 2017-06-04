@@ -19,8 +19,8 @@ class Attribute extends Model
     	return $this->hasMany('App\CategoricalDetailDataset');
     }
 
-	public function classes() {
-    	return $this->belongsToMany('App\Class', 'categorical_detail_datasets', 'attribute_id', 'class_id');
+	public function data_classes() {
+    	return $this->belongsToMany('App\DataClass', 'categorical_detail_datasets', 'attribute_id', 'data_class_id');
     }
 
     public function categorical_datasets() {

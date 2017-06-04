@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Class extends Model
+class DataClass extends Model
 {
 
 	public function system() {
@@ -24,7 +24,6 @@ class Class extends Model
     }
 
 	public function attributes() {
-    	return $this->belongsToMany('App\Attribute', 'categorical_detail_datasets', 'class_id', 'attribute_id');
+    	return $this->belongsToMany('App\Attribute', 'categorical_detail_datasets', 'data_class_id', 'attribute_id');
     }
-
 }
