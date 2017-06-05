@@ -18,7 +18,7 @@ class CreateNbConditionalProbabilitiesTable extends Migration
             $table->integer('system_id')->unsigned();
             $table->integer('data_class_id')->unsigned();
             $table->integer('attribute_id')->unsigned();
-            $table->decimal('value');
+            $table->text('value')->nullable();
             $table->text('free')->nullable();
             $table->timestamps();
         });
