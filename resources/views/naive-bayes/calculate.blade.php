@@ -105,7 +105,7 @@
 	    </div>
 		<div class="panel-body">
 			<strong>
-	        Hasil terbesar didapatkan oleh Penyakit {{ $best_result->data_class->name }} dengan Nilai {{ $best_result->value }}.<br />
+	        Hasil terbesar didapatkan oleh Penyakit <u>{{ $best_result->data_class->name }}</u> dengan Nilai {{ $best_result->value }}.<br />
 	        {{ $best_result->data_class->description }}
 	    	</strong>
 	    </div>
