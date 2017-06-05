@@ -67,6 +67,7 @@
 							<tr>
 								<th width="10px">No</th>
 								<th>Nama</th>
+								<th>Deskripsi</th>
 								<th class="text-center" width="120px">Aksi</th>
 							</tr>
 						</thead>
@@ -75,6 +76,7 @@
 							<tr class="list-item" data-id="{{ $data_class->id }}" data-toggle="popover" data-placement="bottom" data-content="{{ $data_class->description }}" data-title="{{ $data_class->name }}" data-original-title="" title="{{ $data_class->name }}">
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $data_class->name }}</td>
+								<td>{{ $data_class->description }}</td>
 								<td>
 									<a href="/data-classes/{{ $data_class->id }}/edit" class="btn btn-flat btn-sm btn-warning" title="Ubah"><span class="btn-label icon fa fa-edit"></span></a>
 									<a href="#" class="btn btn-flat btn-sm btn-danger btn-delete" title="Hapus" onclick="return deleteClass(this)"><span class="btn-label icon fa fa-trash"></span></a>

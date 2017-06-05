@@ -197,6 +197,7 @@ Use search to find needed section.
 <!-- Pixel Admin's javascripts -->
 <script src="{{ asset('assets/javascripts/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/javascripts/pixel-admin.min.js') }}"></script>
+<script src="{{ asset('assets/javascripts/dataTables.fixedColumns.min.js') }}"></script>
 
 <!--Loading Page JS-->
 <script type="text/javascript" src="{{ asset('loadingpage/loadingoverlay.min.js') }}"></script>
