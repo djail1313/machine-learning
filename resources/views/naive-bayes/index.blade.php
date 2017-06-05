@@ -1,21 +1,27 @@
 @extends('layouts.app')
 
 @section('title')
-	Conditional Probabilities
+	Diagnosa {{ \App\System::find(Session::get('SYSTEM_ID'))->name }}
 @endsection
 
 @section('content')
 		
 	<script>
 		init.push(function () {
-			$('#jq-datatables-naive-bayes-conditional-probabilities').dataTable();
-	        $('#jq-datatables-naive-bayes-conditional-probabilities_wrapper .table-caption').text('Daftar Nilai');
-	        $('#jq-datatables-naive-bayes-conditional-probabilities_wrapper .dataTables_filter input').attr('placeholder', 'Cari...');
 
-	        $('.list-item').popover();
-	        $('.list-item').on('click', ':not(a)', function (e) {
-			    $('.list-item').not(this).popover('hide');
-			});
+	        $('.select-all-attributes').on('click', function(){
+	        	if($(this).is(':checked')){
+	        		$(this).closest('table').find('input[type=checkbox]').prop('checked', true);
+	        	} else {
+	        		$(this).closest('table').find('input[type=checkbox]').prop('checked', false);
+	        	}
+	        });
+
+	        $('.select-attribute').on('click', function(){
+	        	if(!$(this).is(':checked')){
+	        		$(this).closest('table').find('.select-all-attributes').prop('checked', false);
+	        	}
+	        });
 
 		});
 	</script>
@@ -23,53 +29,74 @@
 	<ul class="breadcrumb breadcrumb-page">
 		<div class="breadcrumb-label text-light-gray">You are here: </div>
 		<li><a href="javascript::void()">Naive Bayes</a></li>
-		<li class="active"><a href="javascript::void()">Train</a></li>
+		<li class="active"><a href="javascript::void()">Diagnosa</a></li>
 	</ul>
 
 	<div class="panel">
 	    <div class="panel-heading">
-	        <span class="panel-title">Atribut</span>
+	        <span class="panel-title">Diagnosa {{ \App\System::find(Session::get('SYSTEM_ID'))->name }}</span>
 	    </div>
 		<div class="panel-body">
-			@if (session('status'))
-			    <div class="alert alert-success">
-			        {{ session('status') }}
-			    </div>
-			@endif
-	        <div class="table-primary">
-	        	<form action="/naive-bayes/train" method="POST">
-	        		{{ csrf_field() }}
-		            <div class="form-group">
-		                <button class="btn btn-flat btn-labeled btn-primary"><span class="btn-label icon fa fa-plus"></span>Train Dataset</button>
-		            </div>
-	        	</form>
-	            <div>
-	            	<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-naive-bayes-conditional-probabilities">
-						<thead>
-							<tr>
-								<th width="10px">No</th>
-								<th>Class</th>
-								<th>Atribut</th>
-								<th>Nilai</th>
-								<th class="text-center" width="120px">Aksi</th>
-							</tr>
-						</thead>
-						<tbody>
-						@foreach ($nb_conditional_probabilities as $nb_conditional_probability)
-							<tr class="list-item" data-id="{{ $nb_conditional_probability->id }}" data-toggle="popover" data-placement="bottom" data-content="{{ $nb_conditional_probability->free }}" data-title="{{ $nb_conditional_probability->name }}" data-original-title="" title="{{ $nb_conditional_probability->name }}">
-								<td>{{ $loop->iteration }}</td>
-								<td>{{ $nb_conditional_probability->data_class->name }}</td>
-								<td>{{ $nb_conditional_probability->attribute->name }}</td>
-								<td>{{ $nb_conditional_probability->value }}</td>
-								<td>
-									<a href="naive-bayes/{{ $nb_conditional_probability->id }}/edit" class="btn btn-flat btn-sm btn-warning" title="Ubah"><span class="btn-label icon fa fa-edit"></span></a>
-								</td>
-							</tr>
-						@endforeach
-						</tbody>
-					</table>
-	            </div>
-	        </div>
+
+			<div class="panel-group" id="accordion-attributes">
+				@foreach ($attributes as $key => $attribute)
+				@php ($id = str_replace(' ', '-', strtolower($key)))
+				<div class="panel">
+					<div class="panel-heading">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-attributes" href="#collapse-{{ $id }}">
+							{{ $key?$key:'Lainnya' }}
+						</a>
+					</div>
+					<div id="collapse-{{ $id }}" class="panel-collapse in">
+						<div class="panel-body">
+							<div class="table-primary">
+					            <div>
+					            	<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-attributes-{{ $id }}">
+										<thead>
+											<tr>
+												<th>
+													<div class="action-checkbox">
+														<label class="px-single"><input type="checkbox" name="" value="" class="px select-all-attributes"><span class="lbl"></span></label>
+													</div>
+												</th>
+												<th>No</th>
+												<th>Nama</th>
+											</tr>
+										</thead>
+										<tbody>
+										@foreach ($attribute->all() as $attribute_item)
+											<tr class="list-item-{{ $id }}" data-id="{{ $attribute_item->id }}" data-toggle="popover" data-placement="bottom" data-content="{{ $attribute_item->description }}" data-title="{{ $attribute_item->name }}" data-original-title="" title="{{ $attribute_item->name }}">
+												<td>
+													<div class="action-checkbox">
+														<label class="px-single"><input type="checkbox" name="attributes_id[]" value="{{ $attribute_item->id }}" class="px select-attribute"><span class="lbl"></span></label>
+													</div>
+												</td>
+												<td>{{ $loop->iteration }}</td>
+												<td>{{ $attribute_item->name }}</td>
+											</tr>
+										@endforeach
+										</tbody>
+									</table>
+									<script>
+										init.push(function () {
+											$('#jq-datatables-attributes-{{ $id }}').dataTable({
+												paging: false
+											});
+									        $('#jq-datatables-attributes-{{ $id }}_wrapper .table-caption').text('Pilih Gejala');
+									        $('#jq-datatables-attributes-{{ $id }}_wrapper .dataTables_filter input').attr('placeholder', 'Cari...');
+										});
+									</script>
+					            </div>
+					        </div>
+						</div>
+					</div>
+				</div>
+
+				@endforeach
+
+			</div>
+
+	        
 	    </div>
 
 	</div>

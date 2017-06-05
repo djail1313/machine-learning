@@ -9,7 +9,7 @@
 	<script>
 		init.push(function () {
 			$('#jq-datatables-datasets').dataTable({ 
-				scrollY: "800px",
+				// scrollY: "800px",
 				scrollX : true,
 				scrollCollapse: true,
 				paging: false,
@@ -73,12 +73,12 @@
 	            	<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-datasets">
 						<thead>
 							<tr class="text-center">
-								<th width="20px">No</th>
-								<th style="width: 200px;">Class</th>
+								<th>No</th>
+								<th>Class</th>
 								@foreach ($attributes as $attribute)
-								<th style="min-width: 100px;">{{ $attribute->name }}</th>
+								<th>{{ $attribute->name }}</th>
 								@endforeach
-								<th width="120px">Aksi</th>
+								<th>Aksi</th>
 							</tr>
 						</thead>
 						<tbody>

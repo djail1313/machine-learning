@@ -9,7 +9,7 @@ class NaiveBayesController extends Controller
     public function conditionalProbability(){
     	$nb_conditional_probabilities = \App\NbConditionalProbability::where('system_id', \Session::get('SYSTEM_ID'))->orderBy('data_class_id', 'asc')->get();
     	
-    	return view('naive-bayes.index', compact('nb_conditional_probabilities'));
+    	return view('naive-bayes.train', compact('nb_conditional_probabilities'));
     }
 
     public function train(Request $request){
@@ -72,13 +72,18 @@ class NaiveBayesController extends Controller
 
     	}
 
-    	return redirect('naive-bayes')->with('status', 'Train data berhasil');
+    	return redirect('naive-bayes/train')->with('status', 'Train data berhasil');
 
     }
 
     public function index(){
-        $attributes = \App\Attribute::where('system_id', \Session::get('SYSTEM_ID'))->orderBy('description', 'asc')->get();
-
+        $descriptions = \App\Attribute::distinct()->select('description')->where('system_id', \Session::get('SYSTEM_ID'))->get();
+        $attributes = [];
+        foreach ($descriptions as $description) {
+            $attributes_temp = \App\Attribute::where('system_id', \Session::get('SYSTEM_ID'))->where('description', $description->description)->orderBy('id', 'asc')->get();
+            $attributes[$description->description] = $attributes_temp;
+        }
+        
         return view('naive-bayes.index', compact('attributes'));
     }
 
