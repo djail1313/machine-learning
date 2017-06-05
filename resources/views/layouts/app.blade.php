@@ -167,10 +167,10 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Naive Bayes</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="/naive-bayes"><span class="mm-text">Training</span></a>
+							<a tabindex="-1" href="/naive-bayes/train"><span class="mm-text">Training</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="/naive-bayes/calculate"><span class="mm-text">Perhitungan</span></a>
+							<a tabindex="-1" href="/naive-bayes"><span class="mm-text">Perhitungan</span></a>
 						</li>
 					</ul>
 				</li>

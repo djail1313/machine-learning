@@ -76,6 +76,12 @@ class NaiveBayesController extends Controller
 
     }
 
+    public function index(){
+        $attributes = \App\Attribute::where('system_id', \Session::get('SYSTEM_ID'))->orderBy('description', 'asc')->get();
+
+        return view('naive-bayes.index', compact('attributes'));
+    }
+
     public function calculate(Request $request){
 
     }

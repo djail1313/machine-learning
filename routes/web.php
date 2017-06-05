@@ -31,6 +31,7 @@ Route::get('/change-system/{id}', function($id){
 	return Redirect::back();
 });
 
-Route::get('/naive-bayes', 'NaiveBayesController@conditionalProbability');
+Route::get('/naive-bayes', 'NaiveBayesController@index');
+Route::get('/naive-bayes/train', 'NaiveBayesController@conditionalProbability');
 Route::post('/naive-bayes/train', 'NaiveBayesController@train');
-Route::get('/naive-bayes/calculate', 'NaiveBayesController@calculate');
+Route::post('/naive-bayes', 'NaiveBayesController@calculate');
