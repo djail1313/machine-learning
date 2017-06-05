@@ -43,7 +43,7 @@ class DataClassesController extends Controller
         $data_class->description = $request->input('description');
         $data_class->save();
 
-        return redirect('data-classes')->with('status', 'Atribut berhasil ditambah');
+        return redirect('data-classes')->with('status', 'Class berhasil ditambah');
     }
 
     /**
@@ -96,7 +96,7 @@ class DataClassesController extends Controller
         $data_class->system_id = \Session::get('SYSTEM_ID');
         $data_class->save();
 
-        return redirect('data-classes')->with('status', 'Atribut berhasil diubah');
+        return redirect('data-classes')->with('status', 'Class berhasil diubah');
     }
 
     /**
@@ -113,6 +113,6 @@ class DataClassesController extends Controller
     
         $data_class->delete();
 
-        return redirect('data-classes')->with('status', 'Atribut berhasil dihapus');
+        return redirect('data-classes')->with('status', 'Class berhasil dihapus');
     }
 }

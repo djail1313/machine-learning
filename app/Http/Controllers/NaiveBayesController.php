@@ -21,11 +21,16 @@ class NaiveBayesController extends Controller
     	$attributes = \App\Attribute::where('system_id', \Session::get('SYSTEM_ID'))->get();
     	$datasets = \App\Dataset::where('system_id', \Session::get('SYSTEM_ID'))->get();
 
+    	// NC = Jumlah class
+    	$NC = $data_classes->count();
+    	$p = 1/$NC;
+
     	// N = Jumlah keseluruhan Dataset
     	$N = $datasets->count();
 
     	// M = Jumlah keseluruhan atribut
     	$M = $attributes->count();
+    	$Mp = $M * $p;
 
     	foreach ($data_classes as $data_class) {
     		// ni = Jumlah class i pada datasets
@@ -33,6 +38,8 @@ class NaiveBayesController extends Controller
 
     		// P(Hi) = ni/N = peluang setiap class i pada dataset
     		$PH = $n/$N;
+
+    		$Mn = $M+$n;
 
     		foreach ($attributes as $attribute) {
     			$nb_conditional_probability = new \App\NbConditionalProbability;
@@ -48,9 +55,16 @@ class NaiveBayesController extends Controller
     			// ncji = jumlah atribut j yang muncul pada class i dalam dataset
     			$nc = $matrix_datasetsNc->count();
     			
-    			// P(Ej|Hi) = conditional probability
+    			// P(Ej|Hi) = CONDITIONAL PROBABILITY
+    			
     			// tanpa Smoothing = P(Ej|Hi) = ncji/n
-    			$PEH = $nc/$n;
+    			// $PEH = $nc/$n;
+
+    			// menggunakan m-estimate smoothing = P(Ej|Hi) = (ncji + (M*PriorEstimate)) / (ni + M) 
+    			$PEH = ($nc+$Mp)/$Mn;
+
+    			// menggunakan laplacian smoothing = P(Ej|Hi) = (ncji + 1) / (ni + NC)
+    			// $PEH = ($nc+1)/($n+$NC);
 
     			$nb_conditional_probability->value = $PEH;
     			$nb_conditional_probability->save();
