@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoricalDatasetsTable extends Migration
+class CreateDatasetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCategoricalDatasetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorical_datasets', function (Blueprint $table) {
+        Schema::create('datasets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('system_id')->unsigned();
             $table->integer('data_class_id')->unsigned()->nullable();
@@ -21,7 +21,7 @@ class CreateCategoricalDatasetsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('categorical_datasets', function($table){
+        Schema::table('datasets', function($table){
             $table->foreign('system_id')->references('id')->on('systems')->onDelete('cascade');
             $table->foreign('data_class_id')->references('id')->on('data_classes')->onDelete('cascade');
         });
@@ -34,6 +34,6 @@ class CreateCategoricalDatasetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorical_datasets');
+        Schema::dropIfExists('datasets');
     }
 }

@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CategoricalDetailDataset extends Model
+class MatrixDataset extends Model
 {
-
-	public function categorical_dataset() {
-		return $this->belongsTo('App\CategoricalDataset');
+    
+    public function dataset() {
+		return $this->belongsTo('App\Dataset');
 	}
 
 	public function data_class() {
@@ -18,4 +18,5 @@ class CategoricalDetailDataset extends Model
 	public function attribute() {
 		return $this->belongsTo('App\Attribute');
 	}
+
 }

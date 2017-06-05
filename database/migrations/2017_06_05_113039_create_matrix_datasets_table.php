@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoricalDetailDatasetsTable extends Migration
+class CreateMatrixDatasetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,18 @@ class CreateCategoricalDetailDatasetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorical_detail_datasets', function (Blueprint $table) {
+        Schema::create('matrix_datasets', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('categorical_dataset_id')->unsigned();
+            $table->integer('dataset_id')->unsigned();
             $table->integer('data_class_id')->unsigned()->nullable();
             $table->integer('attribute_id')->unsigned();
+            $table->text('value')->nullable();
             $table->text('free')->nullable();
             $table->timestamps();
         });
 
-        Schema::table('categorical_detail_datasets', function($table){
-            $table->foreign('categorical_dataset_id')->references('id')->on('categorical_datasets')->onDelete('cascade');
+        Schema::table('matrix_datasets', function($table){
+            $table->foreign('dataset_id')->references('id')->on('datasets')->onDelete('cascade');
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
             $table->foreign('data_class_id')->references('id')->on('data_classes')->onDelete('cascade');
         });
@@ -36,6 +37,6 @@ class CreateCategoricalDetailDatasetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorical_detail_datasets');
+        Schema::dropIfExists('matrix_datasets');
     }
 }

@@ -15,16 +15,16 @@ class Attribute extends Model
     	return $this->hasMany('App\NbConditionalProbability');
     }	
 
-    public function categorical_detail_datasets() {
-    	return $this->hasMany('App\CategoricalDetailDataset');
+    public function matrix_datasets() {
+    	return $this->hasMany('App\MatrixDataset');
     }
 
 	public function data_classes() {
-    	return $this->belongsToMany('App\DataClass', 'categorical_detail_datasets', 'attribute_id', 'data_class_id');
+    	return $this->belongsToMany('App\DataClass', 'matrix_datasets', 'attribute_id', 'data_class_id');
     }
 
-    public function categorical_datasets() {
-    	return $this->belongsToMany('App\CategoricalDataset', 'categorical_detail_datasets', 'attribute_id', 'categorical_dataset_id');
+    public function datasets() {
+    	return $this->belongsToMany('App\Dataset', 'matrix_datasets', 'attribute_id', 'dataset_id');
     }
 
 }

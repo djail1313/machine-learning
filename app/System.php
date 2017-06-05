@@ -19,8 +19,8 @@ class System extends Model
     	return $this->hasMany('App\NbConditionalProbability');
     }
 
-    public function categorical_datasets() {
-    	return $this->hasMany('App\CategoricalDataset');
+    public function datasets() {
+    	return $this->hasMany('App\Dataset');
     }
     
 }

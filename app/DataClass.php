@@ -15,12 +15,12 @@ class DataClass extends Model
     	return $this->hasMany('App\NbConditionalProbability');
     }	
 
-    public function categorical_datasets() {
-    	return $this->hasMany('App\CategoricalDataset');
+    public function datasets() {
+    	return $this->hasMany('App\Dataset');
     }
 
-    public function categorical_detail_datasets() {
-    	return $this->hasMany('App\CategoricalDetailDataset');
+    public function matrix_datasets() {
+    	return $this->hasMany('App\MatrixDataset');
     }
 
 	public function attributes() {
