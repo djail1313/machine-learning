@@ -83,11 +83,35 @@ class NaiveBayesController extends Controller
             $attributes_temp = \App\Attribute::where('system_id', \Session::get('SYSTEM_ID'))->where('description', $description->description)->orderBy('id', 'asc')->get();
             $attributes[$description->description] = $attributes_temp;
         }
-        
+
         return view('naive-bayes.index', compact('attributes'));
     }
 
     public function calculate(Request $request){
+        $attributes_id = $request->input('attributes_id');
+        $attributes = \App\Attribute::whereIn('id', $attributes_id)->get();
 
+        $data_classes = \App\DataClass::where('system_id', \Session::get('SYSTEM_ID'))->get();
+        $N = \App\Dataset::where('system_id', \Session::get('SYSTEM_ID'))->count();
+
+        $results = [];
+        foreach ($data_classes as $data_class) {
+            $n = $data_class->datasets->count();
+            $PH = $n/$N;
+
+            $results[$data_class->id] = new \stdClass;
+            $results[$data_class->id]->data_class = $data_class;
+            $results[$data_class->id]->probability = $PH;
+            $results[$data_class->id]->value = $PH;
+
+            $conditional_probabilities = $data_class->nb_conditional_probabilities->whereIn('attribute_id', $attributes_id)->all();
+            $results[$data_class->id]->conditional_probabilities = $conditional_probabilities;
+            
+            foreach ($conditional_probabilities as $conditional_probability) {
+                $results[$data_class->id]->value *= $conditional_probability->value;
+            }
+        }
+
+        return view('naive-bayes.calculate', compact('results', 'attributes'));
     }
 }
