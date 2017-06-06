@@ -37,6 +37,11 @@
 	        <span class="panel-title">Diagnosa {{ \App\System::find(Session::get('SYSTEM_ID'))->name }}</span>
 	    </div>
 		<div class="panel-body">
+			@if (session('status'))
+			    <div class="alert alert-success">
+			        {{ session('status') }}
+			    </div>
+			@endif
 			<form action="/naive-bayes/calculate" method="POST">
 				{{ csrf_field() }}
 	            <button type="submit" class="btn btn-flat btn-labeled btn-primary" name="submit-button" value="diagnosa"><span class="btn-label icon fa fa-search"></span>Diagnosa</button>

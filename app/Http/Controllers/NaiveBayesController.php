@@ -89,6 +89,9 @@ class NaiveBayesController extends Controller
 
     public function calculate(Request $request){
         $attributes_id = $request->input('attributes_id');
+
+        if(!count($attributes_id)) return redirect('naive-bayes')->with('status', 'Gejala harus dipilih');
+        
         $attributes = \App\Attribute::whereIn('id', $attributes_id)->get();
 
         $data_classes = \App\DataClass::where('system_id', \Session::get('SYSTEM_ID'))->get();
