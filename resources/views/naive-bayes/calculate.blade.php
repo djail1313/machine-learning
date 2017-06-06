@@ -19,6 +19,20 @@
 		<li class="active"><a href="javascript::void()">Hasil Diagnosa</a></li>
 	</ul>
 
+	
+	<div class="panel">
+	    <div class="panel-heading">
+	        <span class="panel-title">Hasil Diagnosa</span>
+	    </div>
+		<div class="panel-body">
+			<strong>
+	        Hasil terbesar didapatkan oleh Penyakit <u>{{ $best_result->data_class->name }}</u> dengan Nilai {{ $best_result->value }}.<br />
+	        {{ $best_result->data_class->description }}
+	    	</strong>
+	    </div>
+
+	</div>
+
 	<div class="panel">
 	    <div class="panel-heading">
 	        <span class="panel-title">Gejala Terpilih</span>
@@ -67,14 +81,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						@php
-							$best_result = new stdClass;
-							$best_result->value = 0;
-						@endphp
 						@foreach ($results as $result)
-							@if($best_result->value < $result->value)
-								@php ($best_result = $result)
-							@endif
 							<tr>
 								<td>{{ $result->data_class->name }}</td>
 								<td>{{ $result->probability }}</td>
@@ -95,19 +102,6 @@
 					</table>
 	            </div>
 	        </div>
-	    </div>
-
-	</div>
-
-	<div class="panel">
-	    <div class="panel-heading">
-	        <span class="panel-title">Hasil Diagnosa</span>
-	    </div>
-		<div class="panel-body">
-			<strong>
-	        Hasil terbesar didapatkan oleh Penyakit <u>{{ $best_result->data_class->name }}</u> dengan Nilai {{ $best_result->value }}.<br />
-	        {{ $best_result->data_class->description }}
-	    	</strong>
 	    </div>
 
 	</div>

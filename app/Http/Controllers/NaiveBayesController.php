@@ -95,6 +95,8 @@ class NaiveBayesController extends Controller
         $N = \App\Dataset::where('system_id', \Session::get('SYSTEM_ID'))->count();
 
         $results = [];
+        $best_result = new \stdClass;
+        $best_result->value = 0;
         foreach ($data_classes as $data_class) {
             $n = $data_class->datasets->count();
             $PH = $n/$N;
@@ -110,8 +112,11 @@ class NaiveBayesController extends Controller
             foreach ($conditional_probabilities as $conditional_probability) {
                 $results[$data_class->id]->value *= $conditional_probability->value;
             }
+            if($best_result->value < $results[$data_class->id]->value){
+                $best_result = $results[$data_class->id];
+            }
         }
 
-        return view('naive-bayes.calculate', compact('results', 'attributes'));
+        return view('naive-bayes.calculate', compact('results', 'attributes', 'best_result'));
     }
 }
