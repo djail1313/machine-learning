@@ -13,8 +13,8 @@ class NaiveBayesController extends Controller
     }
 
     public function train(Request $request){
-    	// DB::table('users')->truncate();
-    	\App\NbConditionalProbability::truncate();
+        // delete all trained data
+        \App\NbConditionalProbability::where('system_id', \Session::get('SYSTEM_ID'))->delete();
 
     	// Using Bernouli
     	$data_classes = \App\DataClass::where('system_id', \Session::get('SYSTEM_ID'))->get();
