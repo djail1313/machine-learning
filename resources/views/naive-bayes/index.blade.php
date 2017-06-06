@@ -39,7 +39,7 @@
 		<div class="panel-body">
 			<form action="/naive-bayes/calculate" method="POST">
 				{{ csrf_field() }}
-	            <button type="submit" class="btn btn-flat btn-labeled btn-primary" name="submit-button" value="diagnosa"><span class="btn-label icon fa fa-save"></span>Diagnosa</button>
+	            <button type="submit" class="btn btn-flat btn-labeled btn-primary" name="submit-button" value="diagnosa"><span class="btn-label icon fa fa-search"></span>Diagnosa</button>
 				<br /><br />
 				<div class="panel-group" id="accordion-attributes">
 					@foreach ($attributes as $key => $attribute)
@@ -99,7 +99,7 @@
 
 				</div>
 				<div class="panel-footer text-right">
-		            <button type="submit" class="btn btn-flat btn-labeled btn-primary" name="submit-button" value="diagnosa"><span class="btn-label icon fa fa-save"></span>Diagnosa</button>
+		            <button type="submit" class="btn btn-flat btn-labeled btn-primary" name="submit-button" value="diagnosa"><span class="btn-label icon fa fa-search"></span>Diagnosa</button>
 		        </div>
 			</form>
 	        

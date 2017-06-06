@@ -29,9 +29,9 @@
 	        Hasil terbesar didapatkan oleh Penyakit <u>{{ $best_result->data_class->name }}</u> dengan Nilai {{ $best_result->value }}.<br />
 	        {{ $best_result->data_class->description }}
 	    	</strong>
-	    	<br />
+	    	<br /><br />
 	    	<div>
-	    		<a class="btn btn-flat btn-labeled btn-primary" href="/naive-bayes"><span class="btn-label icon fa fa-save"></span>Diagnosa Ulang</a>
+	    		<a class="btn btn-flat btn-labeled btn-primary" href="/naive-bayes"><span class="btn-label icon fa fa-search"></span>Diagnosa Ulang</a>
 	    	</div>
 	    </div>
 

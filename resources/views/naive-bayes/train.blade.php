@@ -40,7 +40,7 @@
 	        	<form action="/naive-bayes/train" method="POST">
 	        		{{ csrf_field() }}
 		            <div class="form-group">
-		                <button class="btn btn-flat btn-labeled btn-primary"><span class="btn-label icon fa fa-plus"></span>Train Dataset</button>
+		                <button class="btn btn-flat btn-labeled btn-primary"><span class="btn-label icon fa fa-tasks"></span>Train Dataset</button>
 		            </div>
 	        	</form>
 	            <div>
