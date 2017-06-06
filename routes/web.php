@@ -38,3 +38,4 @@ Route::get('/naive-bayes', 'NaiveBayesController@index');
 Route::get('/naive-bayes/train', 'NaiveBayesController@conditionalProbability');
 Route::post('/naive-bayes/train', 'NaiveBayesController@train');
 Route::post('/naive-bayes/calculate', 'NaiveBayesController@calculate');
+Route::get('/naive-bayes/calculate', 'NaiveBayesController@index');
