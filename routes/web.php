@@ -31,6 +31,9 @@ Route::get('/change-system/{id}', function($id){
 	return Redirect::back();
 });
 
+Route::post('/data-classes/import', 'DataClassesController@import');
+Route::post('/attributes/import', 'AttributesController@import');
+
 Route::get('/naive-bayes', 'NaiveBayesController@index');
 Route::get('/naive-bayes/train', 'NaiveBayesController@conditionalProbability');
 Route::post('/naive-bayes/train', 'NaiveBayesController@train');

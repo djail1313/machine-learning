@@ -17,6 +17,20 @@
 			    $('.list-item').not(this).popover('hide');
 			});
 
+			$('#import-file').on('change', function(){
+				bootbox.confirm({
+	                message: "Anda yakin ingin import data?",
+	                callback: function(result) {
+	                    if(result){
+	                        containerOverlay();
+	                        $('#form-import-file').submit();
+	                    }
+	                	$('#import-file').val('');
+	                },
+	                className: "bootbox-sm"
+	            });
+			});
+
 		});
 
 		function deleteClass(index){
@@ -35,17 +49,22 @@
             });
             return false;
 		}
+
+		function uploadFile(){
+			$('#import-file').click();
+			return false;
+		}
 	</script>
 
 	<ul class="breadcrumb breadcrumb-page">
 		<div class="breadcrumb-label text-light-gray">You are here: </div>
-		<li><a href="javascript::void()">Atribut</a></li>
+		<li><a href="javascript::void()">Class</a></li>
 		<li class="active"><a href="javascript::void()">Daftar</a></li>
 	</ul>
 
 	<div class="panel">
 	    <div class="panel-heading">
-	        <span class="panel-title">Atribut</span>
+	        <span class="panel-title">Class</span>
 	    </div>
 		<div class="panel-body">
 			@if (session('status'))
@@ -60,6 +79,8 @@
 	        <div class="table-primary">
 	            <div class="form-group">
 	                <a href="/data-classes/create" class="btn btn-flat btn-labeled btn-primary"><span class="btn-label icon fa fa-plus"></span>Buat Class Baru</a>
+	                <a href="" class="btn btn-flat btn-labeled btn-primary" onclick="return uploadFile();"><span class="btn-label icon fa fa-file-excel-o"></span>Import CSV</a>
+	                <form id="form-import-file" action="/data-classes/import" method="POST" enctype="multipart/form-data">{{ csrf_field() }}<input type="file" name="import-file" class="hide" id="import-file"></form>
 	            </div>
 	            <div>
 	            	<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-data-classes">

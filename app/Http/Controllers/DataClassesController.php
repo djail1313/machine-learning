@@ -115,4 +115,24 @@ class DataClassesController extends Controller
 
         return redirect('data-classes')->with('status', 'Class berhasil dihapus');
     }
+
+    public function import()
+    {
+        $file = $_FILES['import-file']['tmp_name'];
+        $file = fopen($file, 'r');
+        $i = 0;
+        while(! feof($file)){
+            $row = fgetcsv($file);
+            if($i++ && $row[0]){
+                $data_class = new \App\DataClass;
+                $data_class->system_id = \Session::get('SYSTEM_ID');
+                $data_class->name = $row[0];
+                $data_class->description = $row[1];
+                $data_class->save();
+            }
+        }
+        fclose($file);
+        return redirect('data-classes')->with('status', 'Class berhasil diimport');
+    }
+
 }

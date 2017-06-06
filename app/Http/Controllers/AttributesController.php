@@ -115,4 +115,24 @@ class AttributesController extends Controller
 
         return redirect('attributes')->with('status', 'Atribut berhasil dihapus');
     }
+
+    public function import()
+    {
+        $file = $_FILES['import-file']['tmp_name'];
+        $file = fopen($file, 'r');
+        $i = 0;
+        while(! feof($file)){
+            $row = fgetcsv($file);
+            if($i++ && $row[0]){
+                $attribute = new \App\Attribute;
+                $attribute->system_id = \Session::get('SYSTEM_ID');
+                $attribute->name = $row[0];
+                $attribute->description = $row[1];
+                $attribute->save();
+            }
+        }
+        fclose($file);
+        return redirect('attributes')->with('status', 'Atribut berhasil diimport');
+    }
+
 }
