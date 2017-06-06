@@ -19,7 +19,7 @@
 		<li class="active"><a href="javascript::void()">Hasil Diagnosa</a></li>
 	</ul>
 
-	
+
 	<div class="panel">
 	    <div class="panel-heading">
 	        <span class="panel-title">Hasil Diagnosa</span>
@@ -29,6 +29,10 @@
 	        Hasil terbesar didapatkan oleh Penyakit <u>{{ $best_result->data_class->name }}</u> dengan Nilai {{ $best_result->value }}.<br />
 	        {{ $best_result->data_class->description }}
 	    	</strong>
+	    	<br />
+	    	<div>
+	    		<a class="btn btn-flat btn-labeled btn-primary" href="/naive-bayes"><span class="btn-label icon fa fa-save"></span>Diagnosa Ulang</a>
+	    	</div>
 	    </div>
 
 	</div>
