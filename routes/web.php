@@ -37,7 +37,7 @@ Route::post('/attributes/import', 'AttributesController@import');
 Route::get('/naive-bayes', 'NaiveBayesController@index');
 Route::get('/naive-bayes/train', 'NaiveBayesController@conditionalProbability');
 Route::get('/naive-bayes/train/{id}/edit', 'NaiveBayesController@trainEdit');
-Route::put('/naive-bayes/train/update', 'NaiveBayesController@trainUpdate');
+Route::put('/naive-bayes/train/{id}', 'NaiveBayesController@trainUpdate');
 Route::post('/naive-bayes/train', 'NaiveBayesController@train');
 Route::post('/naive-bayes/calculate', 'NaiveBayesController@calculate');
 Route::get('/naive-bayes/calculate', 'NaiveBayesController@index');

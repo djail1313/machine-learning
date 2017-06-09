@@ -77,7 +77,19 @@ class NaiveBayesController extends Controller
     }
 
     public function trainEdit($id){
-        
+        $nb_conditional_probability = \App\NbConditionalProbability::find($id);
+        return view('naive-bayes.form-train', compact('nb_conditional_probability'));
+    }
+
+    public function trainUpdate(Request $request, $id){
+        $nb_conditional_probability = \App\NbConditionalProbability::find($id);
+        if(!$nb_conditional_probability)
+            return back()->withInput();
+
+        $nb_conditional_probability->value = $request->input('value');
+        $nb_conditional_probability->save();
+
+        return redirect('/naive-bayes/train')->with('status', 'Aturan berhasil diubah');
     }
 
     public function index(){

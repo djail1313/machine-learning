@@ -26,7 +26,7 @@
 	    </div>
 		<div class="panel-body">
 			<strong>
-	        Hasil terbesar didapatkan oleh Penyakit <u>{{ $best_result->data_class->name }}</u> dengan Nilai {{ $best_result->value }}.<br />
+	        Hasil terbesar didapatkan oleh Penyakit <u>{{ $best_result->data_class->name }}</u> dengan Nilai {{ $best_result->value }}.<br /><br />
 	        {{ $best_result->data_class->description }}
 	    	</strong>
 	    	<br /><br />
