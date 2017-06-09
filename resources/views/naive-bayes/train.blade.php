@@ -9,7 +9,7 @@
 	<script>
 		init.push(function () {
 			$('#jq-datatables-naive-bayes-conditional-probabilities').dataTable();
-	        $('#jq-datatables-naive-bayes-conditional-probabilities_wrapper .table-caption').text('Daftar Nilai');
+	        $('#jq-datatables-naive-bayes-conditional-probabilities_wrapper .table-caption').text('Daftar Aturan');
 	        $('#jq-datatables-naive-bayes-conditional-probabilities_wrapper .dataTables_filter input').attr('placeholder', 'Cari...');
 
 	        $('.list-item').popover();
@@ -28,7 +28,7 @@
 
 	<div class="panel">
 	    <div class="panel-heading">
-	        <span class="panel-title">Atribut</span>
+	        <span class="panel-title">Aturan</span>
 	    </div>
 		<div class="panel-body">
 			@if (session('status'))
@@ -48,9 +48,10 @@
 						<thead>
 							<tr>
 								<th width="10px">No</th>
-								<th>Class</th>
-								<th>Atribut</th>
-								<th>Nilai</th>
+								<th>Penyakit</th>
+								<th>Gejala</th>
+								<th>Nilai Peluang</th>
+								<th>Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -60,6 +61,9 @@
 								<td>{{ $nb_conditional_probability->data_class->name }}</td>
 								<td>{{ $nb_conditional_probability->attribute->name }}</td>
 								<td>{{ $nb_conditional_probability->value }}</td>
+								<td>
+									<a href="/naive-bayes/train/{{ $nb_conditional_probability->id }}/edit" class="btn btn-flat btn-sm btn-warning" title="Ubah"><span class="btn-label icon fa fa-edit"></span></a>
+								</td>
 							</tr>
 						@endforeach
 						</tbody>

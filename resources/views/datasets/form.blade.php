@@ -32,11 +32,11 @@
 			$(document).ready(function(){
 		        $("#select-attribute").select2({
 		            allowClear: true,
-		            placeholder: "Pilih Atribut"
+		            placeholder: "Pilih Gejala"
 		        });
 		        $("#select-class").select2({
 		            allowClear: true,
-		            placeholder: "Pilih Class"
+		            placeholder: "Pilih Penyakit"
 		        });
 		    });
 	    });
@@ -61,7 +61,7 @@
 								'<input type="hidden" name="matrix_dataset_attribute_id[]"  class="matrix-dataset-attribute-id" value="'+ attribute_id +'" />' +
 								attribute_name +
 							'</td>' +
-							'<td><input type="text" name="matrix_dataset_value[]" value="1" /></td>' +
+							'<td class="hide"><input type="text" name="matrix_dataset_value[]" value="1" /></td>' +
 							'<td class="text-center">' +
 								'<a class="btn btn-flat btn-sm btn-danger btn-delete" title="Hapus" onclick="return deleteAttribute(this)"><span class="btn-label icon fa fa-trash"></span></a>' +
 							'</td>' +
@@ -111,7 +111,7 @@
 	                    </select>
                     </div>
 					<div class="form-group">
-		                <a onclick="return addAttribute()" class="btn btn-flat btn-labeled btn-primary" id="btn-add-attribute"><span class="btn-label icon fa fa-plus"></span>Tambah Atribut</a>
+		                <a onclick="return addAttribute()" class="btn btn-flat btn-labeled btn-primary" id="btn-add-attribute"><span class="btn-label icon fa fa-plus"></span>Tambah Gejala</a>
 		            </div>
 				</div>
 				<br />
@@ -120,8 +120,8 @@
 		            	<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="table-matrix-datasets">
 							<thead>
 								<tr>
-									<th>Atribut</th>
-									<th>Nilai</th>
+									<th>Gejala</th>
+									<th class="hide">Nilai</th>
 									<th class="text-center" width="100px">Aksi</th>
 								</tr>
 							</thead>
@@ -134,7 +134,7 @@
 											<input type="hidden" name="matrix_dataset_attribute_id[]"  class="matrix-dataset-attribute-id" value="{{ $matrix_dataset->attribute->id }}" />
 											{{ $matrix_dataset->attribute->name }}
 										</td>
-										<td><input type="text" name="matrix_dataset_value[]" value="{{ $matrix_dataset->value }}" /></td>
+										<td class="hide"><input type="text" name="matrix_dataset_value[]" value="{{ $matrix_dataset->value }}" /></td>
 										<td class="text-center">
 											<a class="btn btn-flat btn-sm btn-danger btn-delete" title="Hapus" onclick="return deleteAttribute(this)"><span class="btn-label icon fa fa-trash"></span></a>
 										</td>

@@ -74,7 +74,7 @@
 						<thead>
 							<tr class="text-center">
 								<th>No</th>
-								<th>Class</th>
+								<th>Penyakit</th>
 								@foreach ($attributes as $attribute)
 								<th>{{ $attribute->name }}</th>
 								@endforeach

@@ -76,6 +76,10 @@ class NaiveBayesController extends Controller
 
     }
 
+    public function trainEdit($id){
+        
+    }
+
     public function index(){
         $descriptions = \App\Attribute::distinct()->select('description')->where('system_id', \Session::get('SYSTEM_ID'))->get();
         $attributes = [];
