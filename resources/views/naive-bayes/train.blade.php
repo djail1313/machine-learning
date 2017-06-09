@@ -50,7 +50,7 @@
 								<th width="10px">No</th>
 								<th>Penyakit</th>
 								<th>Gejala</th>
-								<th>Nilai Peluang</th>
+								<th>Nilai Probabilitas</th>
 								<th>Aksi</th>
 							</tr>
 						</thead>
